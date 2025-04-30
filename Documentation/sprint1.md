@@ -1,0 +1,68 @@
+# Project Documentation: Flu Shot Learning: Predicting Vaccination Patterns
+
+## Objective
+In this sprint, we will investigate geographical and behavioral patterns in H1N1 and seasonal flu vaccination uptake, explore important predictive features, and build a classification model for vaccine acceptance.
+
+## Datasets:
+- `train_features.csv`: Demographic and behavioral features of survey respondents
+- `train_labels.csv`: Binary labels for H1N1 and seasonal flu vaccine uptake
+- `test_features.csv`: Feature set without labels for final prediction
+
+## Data Preprocessing Pipeline
+### 1. Import Libraries & Load Data
+- Loaded training and test datasets using pandas
+- Previewed the first 5 rows of each dataset for structure comprehension
+
+### 2. Dataset Shapes and Columns
+- Printed shape and column information to understand data dimensions and feature types
+
+### 3. Merge for EDA
+- Merged `train_features` with `train_labels` using `respondent_id`
+- Used this combined dataset (`train_df`) for exploratory data analysis (EDA)
+
+## Exploratory Data Analysis (EDA)
+### 4. Missing Values
+- Checked for missing values in descending order
+- Calculated total and percentage of missing values
+- Assessed which features require imputation or removal
+
+### 5. Data Structure Examination
+- Viewed data types and unique values for each feature
+- Generated descriptive statistics for numerical and categorical variables
+
+### 6. Target Distribution
+- Visualized class imbalance for `h1n1_vaccine` and `seasonal_vaccine` uptake
+
+## Data Cleaning & Feature Engineering
+### 7. Drop Irrelevant or Redundant Columns
+- Removed non-informative or duplicate features (e.g., `respondent_id`, others)
+
+### 8. Handle Missing Values
+- Applied custom imputation strategies (mode or fill with unknown)
+- Region mapping
+
+### 9. Encoding
+- Used `LabelEncoder` to transform categorical features into numeric form
+- Stored label encoders for use with the test set
+
+### 10. New Feature Creation
+- Created `household_size = household_adults + household_children`
+- Dropped original individual features to reduce redundancy
+
+## Correlation & Feature Analysis
+### 11. Correlation Matrix
+- Generated full correlation matrix on encoded features
+- Plotted a heatmap with hierarchical clustering for visual insights
+
+### 12. Redundant Feature Detection
+- Identified highly correlated pairs (correlation > 0.9)
+- Recommended combining or dropping redundant features
+
+## Modeling: Random Forest Classifier
+### 13. Feature Selection & Classification
+- Trained a `RandomForestClassifier` on preprocessed features
+- Extracted and ranked top features by importance for both targets
+
+### 14. Compare Top Features
+- Merged important features from both targets
+
